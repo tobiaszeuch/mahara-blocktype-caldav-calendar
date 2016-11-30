@@ -1,0 +1,17 @@
+VERSION 0.3
+- Added some example code
+- Added check on "toggle" elements
+
+VERSION 0.2
+- Now handles semicolon parameters
+- Added RFC verification before data output
+- Added file open error checking
+- Added return codes for functions
+- Added more comments
+- Added get_all() function to ComponentManager class
+- Proper line folding/unfolding
+- Standardized everything to uppercase
+
+VERSION 0.1
+- This is the inital release and should be considered beta, many more features need to be added
+- Can read/write and manipulate an arbitrary iCal file in very basic ways and includes very basic enforcement of the standard

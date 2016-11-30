@@ -1,0 +1,313 @@
+<html>
+<head>
+<title>Docs For Class ical_Property</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">libical</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_libical.html" class="menu">class tree: libical</a> ]
+		  [ <a href="../elementindex_libical.html" class="menu">index: libical</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_libical.html">libical</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../libical/_examples.php.html">		examples.php
+		</a><br>
+			<a href="../libical/_ical.php.html">		ical.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../libical/Daylight.html">Daylight</a><br />
+	    		<a href="../libical/ical_ComponentManager.html">ical_ComponentManager</a><br />
+	    		<a href="../libical/ical_File.html">ical_File</a><br />
+	    		<a href="../libical/ical_Property.html">ical_Property</a><br />
+	    		<a href="../libical/Standard.html">Standard</a><br />
+	    		<a href="../libical/Tzprop.html">Tzprop</a><br />
+	    		<a href="../libical/vAlarm.html">vAlarm</a><br />
+	    		<a href="../libical/vCalendar.html">vCalendar</a><br />
+	    		<a href="../libical/vEvent.html">vEvent</a><br />
+	    		<a href="../libical/vEventInstance.html">vEventInstance</a><br />
+	    		<a href="../libical/vFreebusy.html">vFreebusy</a><br />
+	    		<a href="../libical/vJournal.html">vJournal</a><br />
+	    		<a href="../libical/vTimezone.html">vTimezone</a><br />
+	    		<a href="../libical/vTodo.html">vTodo</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: ical_Property</h1>
+Source Location: /ical.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">Base class for any values that we need to handle.</div><br /><br />
+
+
+
+
+
+
+        
+</td>
+
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../libical/ical_Property.html#methodical_Property">ical_Property</a></li>
+    <li><a href="../libical/ical_Property.html#methodget_params">get_params</a></li>
+    <li><a href="../libical/ical_Property.html#methodget_value">get_value</a></li>
+    <li><a href="../libical/ical_Property.html#methodset_param">set_param</a></li>
+    <li><a href="../libical/ical_Property.html#methodset_params">set_params</a></li>
+    <li><a href="../libical/ical_Property.html#methodset_value">set_value</a></li>
+    <li><a href="../libical/ical_Property.html#methodtext_dump">text_dump</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 150]<br />
+Base class for any values that we need to handle.<br /><br /></div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+
+  <hr />
+	<a name="methodical_Property"></a>
+	<h3>constructor ical_Property <span class="smalllinenumber">[line 162]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>ical_Property ical_Property(
+string
+$value, [string
+$params = &quot;&quot;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Init function, set known variables<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$params</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodget_params"></a>
+	<h3>method get_params <span class="smalllinenumber">[line 187]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string get_params(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Returns the params (semicolon separated)stored in this property<br /><br /><br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodget_value"></a>
+	<h3>method get_value <span class="smalllinenumber">[line 171]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string get_value(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Returns the value stored in this property<br /><br /><br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodset_param"></a>
+	<h3>method set_param <span class="smalllinenumber">[line 212]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void set_param(
+string
+$name, string
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add a param stored in this property<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$name</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodset_params"></a>
+	<h3>method set_params <span class="smalllinenumber">[line 199]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void set_params(
+string
+$paramstring)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Sets the params (semicolon separated) stored in this property<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$paramstring</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodset_value"></a>
+	<h3>method set_value <span class="smalllinenumber">[line 179]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void set_value(
+string
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Sets the value stored in this property<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodtext_dump"></a>
+	<h3>method text_dump <span class="smalllinenumber">[line 223]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string text_dump(
+[string
+$text = &quot;&quot;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Returns this property in ical text format<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$text</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 14 Aug 2007 19:37:27 -0700 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.0</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

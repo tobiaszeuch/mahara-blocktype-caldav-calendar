@@ -1,0 +1,13 @@
+- bug with colons, see RFC section 4.2.1, colons in description.
+
+- simplify event/todo/etc. creation
+- Get events/todos by date range
+
+- merge events/todo/etc from muliple into one calendar object
+- add encoded attachments
+- timezone import support
+- Search calendar for text
+
+RFC enforcement
+- verification of valid values for all components
+- enforce valid optional components (X- notation required)

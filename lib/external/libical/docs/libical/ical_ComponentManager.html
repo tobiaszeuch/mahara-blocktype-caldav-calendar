@@ -1,0 +1,570 @@
+<html>
+<head>
+<title>Docs For Class ical_ComponentManager</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">libical</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_libical.html" class="menu">class tree: libical</a> ]
+		  [ <a href="../elementindex_libical.html" class="menu">index: libical</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_libical.html">libical</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../libical/_examples.php.html">		examples.php
+		</a><br>
+			<a href="../libical/_ical.php.html">		ical.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../libical/Daylight.html">Daylight</a><br />
+	    		<a href="../libical/ical_ComponentManager.html">ical_ComponentManager</a><br />
+	    		<a href="../libical/ical_File.html">ical_File</a><br />
+	    		<a href="../libical/ical_Property.html">ical_Property</a><br />
+	    		<a href="../libical/Standard.html">Standard</a><br />
+	    		<a href="../libical/Tzprop.html">Tzprop</a><br />
+	    		<a href="../libical/vAlarm.html">vAlarm</a><br />
+	    		<a href="../libical/vCalendar.html">vCalendar</a><br />
+	    		<a href="../libical/vEvent.html">vEvent</a><br />
+	    		<a href="../libical/vEventInstance.html">vEventInstance</a><br />
+	    		<a href="../libical/vFreebusy.html">vFreebusy</a><br />
+	    		<a href="../libical/vJournal.html">vJournal</a><br />
+	    		<a href="../libical/vTimezone.html">vTimezone</a><br />
+	    		<a href="../libical/vTodo.html">vTodo</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: ical_ComponentManager</h1>
+Source Location: /ical.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre><br />
+<div class="description">RFC Sections 4.4 - 4.6</div><br /><br />
+
+
+
+
+
+
+        
+</td>
+
+<td valign="top">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../libical/ical_ComponentManager.html#var$components">$components</a></li>
+  </ul>
+</td>
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../libical/ical_ComponentManager.html#methodadd">add</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodadd_new">add_new</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodcleanup_array">cleanup_array</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodcomponents_dump">components_dump</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodformat_line">format_line</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodget">get</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodget_all">get_all</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodical_dump">ical_dump</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodload_ical">load_ical</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodremove">remove</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodrfc_verify">rfc_verify</a></li>
+    <li><a href="../libical/ical_ComponentManager.html#methodset">set</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+<td valign="top">
+<h3>Child classes:</h3>
+<div class="tags">
+<dl>
+<dt><a href="../libical/ical_File.html">ical_File</a></dt>
+	<dd>This is the class that everyone should start with to open an existing file or create a new one.</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vCalendar.html">vCalendar</a></dt>
+	<dd>Calendar object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vEvent.html">vEvent</a></dt>
+	<dd>Event object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vTodo.html">vTodo</a></dt>
+	<dd>Todo object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vJournal.html">vJournal</a></dt>
+	<dd>Journal object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vFreebusy.html">vFreebusy</a></dt>
+	<dd>Freebusy object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vTimezone.html">vTimezone</a></dt>
+	<dd>Timezone object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/Tzprop.html">Tzprop</a></dt>
+	<dd>Tzprop object class</dd>
+</dl>
+<dl>
+<dt><a href="../libical/vAlarm.html">vAlarm</a></dt>
+	<dd>Alarm object class</dd>
+</dl>
+</div>
+</td>
+
+
+
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 235]<br />
+RFC Sections 4.4 - 4.6<br /><br /><p>This is a base class for just about everything and shouldn't be  created directly</p><br /></div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+<hr />
+<a name="class_vars"></a>
+<h3>Class Variables</h3>
+<div class="tags">
+	<a name="var$components"></a>
+	<p></p>
+	<h4>$components = <span class="value">array()</span></h4>
+	<p>[line 240]</p>
+  This is where we store subelements<br /><br />
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>array</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+</div><br />
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+
+  <hr />
+	<a name="methodadd"></a>
+	<h3>method add <span class="smalllinenumber">[line 292]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>integer add(
+string
+$component, <a href="../libical/ical_Property.html">ical_Property</a>
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Add this value if it can have multiple entries, otherwise overwrite the old one.<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$component</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type"><a href="../libical/ical_Property.html">ical_Property</a>&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodadd_new"></a>
+	<h3>method add_new <span class="smalllinenumber">[line 322]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void add_new(
+string
+$component, <a href="../libical/ical_Property.html">ical_Property</a>
+$value)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		This is only used for adding additional items.<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$component</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type"><a href="../libical/ical_Property.html">ical_Property</a>&nbsp;&nbsp;</td>
+        <td><b>$value</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcleanup_array"></a>
+	<h3>method cleanup_array <span class="smalllinenumber">[line 394]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array cleanup_array(
+string
+$plaintext)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Prepare iCal array of lines for further processing.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>Array of strings</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$plaintext</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodcomponents_dump"></a>
+	<h3>method components_dump <span class="smalllinenumber">[line 492]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string components_dump(
+[string
+$text = &quot;&quot;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Dump component values to text format.<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$text</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodformat_line"></a>
+	<h3>method format_line <span class="smalllinenumber">[line 519]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string format_line(
+string
+$line)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Do line folding as defined in the RFC.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>global:</b>&nbsp;&nbsp;</td><td>integer <a href="../libical/_ical.php.html#global$LINE_FOLD_LENGTH">$LINE_FOLD_LENGTH</a>: </td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$line</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodget"></a>
+	<h3>method get <span class="smalllinenumber">[line 375]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array get(
+string
+$component)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return an array of ical_Property objects for the component.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>Array of ical_Property objects</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$component</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodget_all"></a>
+	<h3>method get_all <span class="smalllinenumber">[line 385]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array get_all(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return all component values in native array form.<br /><br /><br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodical_dump"></a>
+	<h3>method ical_dump <span class="smalllinenumber">[line 470]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>string ical_dump(
+[string
+$text = &quot;&quot;])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Dump ical data to text.<br /><br /><br /><br />
+
+	<p>Overridden in child classes as:<br />
+		<dl>
+	<dt><a href="../libical/ical_File.html#methodical_dump">ical_File::ical_dump()</a></dt>
+		<dd>Dump ical data to text string</dd>
+	</dl>
+	</p>
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$text</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodload_ical"></a>
+	<h3>method load_ical <span class="smalllinenumber">[line 418]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void load_ical(
+string
+$plaintext)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Recursive method to add ical objects from their text.<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$plaintext</b>&nbsp;&nbsp;</td>
+        <td>Text in iCal format</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodremove"></a>
+	<h3>method remove <span class="smalllinenumber">[line 357]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>integer remove(
+string
+$component)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Remove all of a given component.<br /><br /><p>Return 0 on success, -1 otherwise (required element).</p><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$component</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodrfc_verify"></a>
+	<h3>method rfc_verify <span class="smalllinenumber">[line 529]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>integer rfc_verify(
+[boolean
+$recursive = FALSE])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Return 0 when everything checks out, negative code otherwise.<br /><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">boolean&nbsp;&nbsp;</td>
+        <td><b>$recursive</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodset"></a>
+	<h3>method set <span class="smalllinenumber">[line 337]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>integer set(
+string
+$component, array
+$arrayofvalues)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Set all values for this component type in this array return 0 on success, 1 otherwise.<br /><br /><p>This is really silly to use for single entries only, it is the same as using add, but probably more cumbersome.</p><br /><br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$component</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">array&nbsp;&nbsp;</td>
+        <td><b>$arrayofvalues</b>&nbsp;&nbsp;</td>
+        <td>Array of ical_Property objects</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 14 Aug 2007 19:37:26 -0700 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.0</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

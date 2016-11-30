@@ -1,0 +1,362 @@
+<html>
+<head>
+<title>Docs for page ical.php</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">libical</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                    
+                              		  [ <a href="../classtrees_libical.html" class="menu">class tree: libical</a> ]
+		  [ <a href="../elementindex_libical.html" class="menu">index: libical</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_libical.html">libical</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../libical/_examples.php.html">		examples.php
+		</a><br>
+			<a href="../libical/_ical.php.html">		ical.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../libical/Daylight.html">Daylight</a><br />
+	    		<a href="../libical/ical_ComponentManager.html">ical_ComponentManager</a><br />
+	    		<a href="../libical/ical_File.html">ical_File</a><br />
+	    		<a href="../libical/ical_Property.html">ical_Property</a><br />
+	    		<a href="../libical/Standard.html">Standard</a><br />
+	    		<a href="../libical/Tzprop.html">Tzprop</a><br />
+	    		<a href="../libical/vAlarm.html">vAlarm</a><br />
+	    		<a href="../libical/vCalendar.html">vCalendar</a><br />
+	    		<a href="../libical/vEvent.html">vEvent</a><br />
+	    		<a href="../libical/vEventInstance.html">vEventInstance</a><br />
+	    		<a href="../libical/vFreebusy.html">vFreebusy</a><br />
+	    		<a href="../libical/vJournal.html">vJournal</a><br />
+	    		<a href="../libical/vTimezone.html">vTimezone</a><br />
+	    		<a href="../libical/vTodo.html">vTodo</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Procedural File: ical.php</h1>
+Source Location: /ical.php<br /><br />
+
+<br>
+<br>
+
+<div class="contents">
+<h2>Classes:</h2>
+<dt><a href="../libical/ical_File.html">ical_File</a></dt>
+	<dd>This is the class that everyone should start with to open an existing file or create a new one.</dd>
+<dt><a href="../libical/ical_Property.html">ical_Property</a></dt>
+	<dd>Base class for any values that we need to handle.</dd>
+<dt><a href="../libical/ical_ComponentManager.html">ical_ComponentManager</a></dt>
+	<dd>RFC Sections 4.4 - 4.6</dd>
+<dt><a href="../libical/vCalendar.html">vCalendar</a></dt>
+	<dd>Calendar object class</dd>
+<dt><a href="../libical/vEvent.html">vEvent</a></dt>
+	<dd>Event object class</dd>
+<dt><a href="../libical/vEventInstance.html">vEventInstance</a></dt>
+	<dd>Event Instance object class</dd>
+<dt><a href="../libical/vTodo.html">vTodo</a></dt>
+	<dd>Todo object class</dd>
+<dt><a href="../libical/vJournal.html">vJournal</a></dt>
+	<dd>Journal object class</dd>
+<dt><a href="../libical/vFreebusy.html">vFreebusy</a></dt>
+	<dd>Freebusy object class</dd>
+<dt><a href="../libical/vTimezone.html">vTimezone</a></dt>
+	<dd>Timezone object class</dd>
+<dt><a href="../libical/Tzprop.html">Tzprop</a></dt>
+	<dd>Tzprop object class</dd>
+<dt><a href="../libical/Standard.html">Standard</a></dt>
+	<dd>Standard object class</dd>
+<dt><a href="../libical/Daylight.html">Daylight</a></dt>
+	<dd>Daylist object class</dd>
+<dt><a href="../libical/vAlarm.html">vAlarm</a></dt>
+	<dd>Alarm object class</dd>
+</div><br /><br />
+
+<h2>Page Details:</h2>
+This file is a PHP implementation of RFC 2445 (ical).<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>author:</b>&nbsp;&nbsp;</td><td>Neil McNab &lt;<a href="mailto:webmaster@nabber.org">webmaster@nabber.org</a>&gt;</td>
+  </tr>
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.3</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+<br /><br />
+  <hr />
+	<a name="global$DATE_FORMAT"></a>
+	<h4><i>string</i> $DATE_FORMAT <span class="smalllinenumber">[line 52]</span></h4>
+	<div class="tags">
+  	Date format string<br /><br />  
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Default value:</b>&nbsp;&nbsp;</td>
+      <td>&quot;Ydm\THis&quot;</td>
+    </tr>
+	  </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+  <hr />
+	<a name="global$LINE_FOLD_LENGTH"></a>
+	<h4><i>integer</i> $LINE_FOLD_LENGTH <span class="smalllinenumber">[line 47]</span></h4>
+	<div class="tags">
+  	Max length of a line in the iCal file<br /><br />  
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Default value:</b>&nbsp;&nbsp;</td>
+      <td>75</td>
+    </tr>
+	  </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+<br /><br />
+<br />
+  <hr />
+	<a name="functioncreate_from_ical"></a>
+	<h3>create_from_ical <span class="smalllinenumber">[line 747]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void create_from_ical(
+ $subelementext)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		This really shouldn't ever be needed, since according to the RFC everything needs to be within a calendar to begin with, just use load_ical in the Vcalendar class<br /><br />    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$subelementext</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionepochtime2icaltime"></a>
+	<h3>epochtime2icaltime <span class="smalllinenumber">[line 806]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void epochtime2icaltime(
+ $icaltime)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$icaltime</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionicaltime2epochtime"></a>
+	<h3>icaltime2epochtime <span class="smalllinenumber">[line 800]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void icaltime2epochtime(
+ $icaltime)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$icaltime</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionlocal2utc"></a>
+	<h3>local2utc <span class="smalllinenumber">[line 812]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void local2utc(
+ $local,  $offset)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>global:</b>&nbsp;&nbsp;</td><td>string <a href="../libical/_ical.php.html#global$DATE_FORMAT">$DATE_FORMAT</a>: </td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$local</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$offset</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionmerge_calendars"></a>
+	<h3>merge_calendars <span class="smalllinenumber">[line 784]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../libical/ical_File.html">ical_File</a> merge_calendars(
+<a href="../libical/ical_File.html">ical_File</a> 0, <a href="../libical/ical_File.html">ical_File</a> 1)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		pass in arbitrary number of vcalendar objects<br /><br /><p>returns a new vcalendar object with all calendar items</p><br />    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type"><a href="../libical/ical_File.html">ical_File</a>&nbsp;&nbsp;</td>
+        <td><b>0</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type"><a href="../libical/ical_File.html">ical_File</a>&nbsp;&nbsp;</td>
+        <td><b>1</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionmerge_icalobjects"></a>
+	<h3>merge_icalobjects <span class="smalllinenumber">[line 761]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code><a href="../libical/ical_File.html">ical_File</a> merge_icalobjects(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		pass in arbitrary number of icalfile objects<br /><br /><p>returns a new icalfile object with all calendars</p><br />    <br /><br />
+	
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functiontext_to_array"></a>
+	<h3>text_to_array <span class="smalllinenumber">[line 835]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>array text_to_array(
+string $text)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		convert a string into an array based on newlines<br /><br />    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">string&nbsp;&nbsp;</td>
+        <td><b>$text</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+  <hr />
+	<a name="functionutc2local"></a>
+	<h3>utc2local <span class="smalllinenumber">[line 823]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void utc2local(
+ $utc,  $offset)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>global:</b>&nbsp;&nbsp;</td><td>string <a href="../libical/_ical.php.html#global$DATE_FORMAT">$DATE_FORMAT</a>: </td>
+  </tr>
+</table>
+</div>
+    <br /><br />
+	
+    		<h4>Parameters</h4>
+    <table border="0" cellspacing="0" cellpadding="0">
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$utc</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+		      <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$offset</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+				</table>
+    	<div class="top">[ <a href="#top">Top</a> ]</div><br /><br />
+	</div>
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Tue, 14 Aug 2007 19:37:26 -0700 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.0</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

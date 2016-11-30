@@ -1,0 +1,8 @@
+/**
+ * CSS rules for the CalDav Calendar artefact plugin
+ *
+ */
+
+.panel.calendar-event  {
+    border: 2px solid #99c8e0;
+}
