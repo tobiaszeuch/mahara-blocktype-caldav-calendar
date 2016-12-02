@@ -1,37 +1,33 @@
-
-<link rel="stylesheet" href="{$WWWROOT}{$pluginpath}{$relcalendarcsspath}" />
-<link rel="stylesheet" href="{$WWWROOT}js/jquery/jquery-ui/css/smoothness/jquery-ui.min.css" />
-<script type="text/javascript">
-    jQuery(document).ready(function() {
+jQuery(document).ready(function() {
 
     // page is now ready, initialize the calendar...
 
-    jQuery('#calendar_{$htmlId}').fullCalendar({
+    jQuery('#calendar_112').fullCalendar({
             events: function(start, end, timezone, callback) {
                 jQuery.ajax({
-                    url: '{$WWWROOT}{$pluginpath}feed.php',
+                    url: 'http://localhost/mahara-16.10/htdocs/blocktype/caldavcalendar/feed.php',
                     datatype: 'json',
                     data: {
-                        remotecalendarinstance: {$htmlId},
-                        failonerror : {if $failonerror}true{else}false{/if},
-                        start : start.unix(),
-                        end : end.unix()
+                        remotecalendarinstance: 112,
+                        failonerror : 1,
+                        start: start,
+                        end:end,
+                        timezone:timezone
                     },
                     success: function(data, textStatus, jqXHR) {
-                        data = JSON.parse(data);
-                        if (typeof(data.error) !== 'undefined') {
-                            alert("Error when fetching data from the caldav server: " + data.error);
+                        if (null !== data['error'] && data['error'].length > 0) {
+                            alert(data['error']);
                         }
-                        callback(data.events);
+                        callback(data['events']);
                     }
                 });
             },
             eventClick: function(calEvent, jsEvent, view) {
-                jQuery("#eventDetails_{$htmlId}");
+                jQuery("#eventDetails_112");
                 jQuery.ajax({
                     method: "GET",
-                    url: '{$WWWROOT}{$pluginpath}eventDetails.php',
-                    data: { remotecalendarinstance: '{$htmlId}',
+                    url: 'http://localhost/mahara-16.10/htdocs/blocktype/caldavcalendar/eventDetails.php',
+                    data: { remotecalendarinstance: '112',
                     uid: calEvent.id}
                   })
                     .done(function( msg ) {
@@ -53,9 +49,3 @@ jQuery.fn.center = function () {
                                                 jQuery(window).scrollLeft()) + "px");
     return this;
 }
-</script>
-<div id="calendar_{$htmlId}" style="width: 100%;">
-     {$output}
-</div>
-
-

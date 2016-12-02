@@ -37,9 +37,6 @@ class LibIcalUtil {
             $calendar = new LibIcalCalendarImpl($vCalendars);
             return $calendar;
         }
-        else {
-            throw new Exception("Error: no calendar exported. Exported: " + var_export($vCalendars, true), -1, null);
-        }
         return null;
     }
 }

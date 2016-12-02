@@ -329,6 +329,7 @@ EOXML;
     xml_parser_free($xml_parser);
 
     $report = array();
+    $inerror = false;
     foreach( $this->xml_tags as $k => $v ) {
       switch( $v['tag'] ) {
         case 'DAV::RESPONSE':
@@ -348,6 +349,25 @@ EOXML;
         case 'URN:IETF:PARAMS:XML:NS:CALDAV:CALENDAR-DATA':
           $response['data'] = $v['value'];
           break;
+        case 'DAV::ERROR':
+            if ( $v['type'] == 'open' ) {
+                $inerror = true;
+                $response = array();
+            }
+            elseif ( $v['type'] == 'close' ) {
+                $report[] = $response;
+            }
+            break;
+        case 'HTTP://SABREDAV.ORG/NS:MESSAGE':
+            $response['message'] = $v['value'];
+            break;
+        default :
+            if ($inerror) {
+                if (substr($v['tag'], -7) == "MESSAGE") {
+                    $response['message'] = $v['value'];
+                }
+            }
+            break;
       }
     }
     return $report;

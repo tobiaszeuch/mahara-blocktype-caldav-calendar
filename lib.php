@@ -85,6 +85,7 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
         $dwoo->assign('output', $data);
         $dwoo->assign('pluginpath', 'blocktype/caldavcalendar/');
         $dwoo->assign('relcalendarcsspath', 'lib/external/fullcalendar-3.0.1/fullcalendar.css');
+        $dwoo->assign('failonerror', $editing); // on editing, fail when errors are encountered
         return $dwoo->fetch('blocktype:caldavcalendar:calendar.tpl');
     }
 

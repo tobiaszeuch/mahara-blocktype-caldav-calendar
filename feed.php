@@ -33,6 +33,7 @@ require_once(get_config('docroot') . 'blocktype/lib.php');
 require_once(dirname(__FILE__).'/lib.php');
 
 $blockid = param_integer('remotecalendarinstance');
+$failonerror = param_boolean('failonerror');
 $start = param_variable('start');
 $end = param_variable('end');
 
@@ -40,12 +41,26 @@ if (empty($start) || empty($end)) {
     return;
 }
 
-$startDateTime = RemoteCalendarUtil::iso_8601_date_to_DateTime($start);
-$endDateTime = RemoteCalendarUtil::iso_8601_date_to_DateTime($end);
+$startDateTime = new DateTime();
+$startDateTime->setTimestamp($start);
+$endDateTime = new DateTime();
+$endDateTime->setTimestamp($end);
 
 $block = new BlockInstance($blockid);
 
 $calendar = CaldavCalendar::fromRemoteCalendarBlockInst($block);
-$events = $calendar->get_events_for_start_end_as_json($startDateTime, $endDateTime);
+$events = "";
+if (null !== $calendar) {
+    $events = $calendar->get_events_for_start_end_as_json($startDateTime, $endDateTime);
+}
 
-echo $events;
+$errors = $calendar->get_and_clear_errors();
+$response = '{';
+if ($failonerror && !empty($errors)) {
+    $response .= '"error":"' . join('","', $errors) . '",';
+}
+$response .= '"events":' . $events . '}';
+
+
+
+echo $response;

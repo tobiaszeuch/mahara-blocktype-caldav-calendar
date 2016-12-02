@@ -15,8 +15,19 @@ class CaldavCalendar {
     private $calendar;
     private $base_url;
 
+    const CONFIG_PARAM_USERNAME = 'username';
+    const CONFIG_PARAM_PASSWORD = 'password';
+    const CONFIG_PARAM_CALENDAR = 'calendar';
+    const CONFIG_PARAM_BASE_URL = 'baseurl';
+
     /** @val $client CalDAVClient */
     private $client = null;
+
+    /**
+     * cache for errors
+     * @var array
+     */
+    private $errors = array();
 
     public function __construct($user, $pass, $calendar, $base_url) {
         $this->user = $user;
@@ -28,10 +39,29 @@ class CaldavCalendar {
     public static function fromRemoteCalendarBlockInst(BlockInstance $instance) {
         $configdata = $instance->get('configdata');
 
-        $user = $configdata['username'];
-        $pass = $configdata['password'];
-        $calendar = $configdata['calendar'];
-        $base_url = $configdata['baseurl'];
+        $user = null;
+        if (array_key_exists(self::CONFIG_PARAM_USERNAME, $configdata)) {
+            $user = $configdata[self::CONFIG_PARAM_USERNAME];
+        }
+        $pass = null;
+        if (array_key_exists(self::CONFIG_PARAM_PASSWORD, $configdata)) {
+            $pass = $configdata[self::CONFIG_PARAM_PASSWORD];
+        }
+        $calendar = null;
+        if (array_key_exists(self::CONFIG_PARAM_CALENDAR, $configdata)) {
+            $calendar = $configdata[self::CONFIG_PARAM_CALENDAR];
+        }
+        $base_url = null;
+        if (array_key_exists(self::CONFIG_PARAM_BASE_URL, $configdata)) {
+            $base_url = $configdata[self::CONFIG_PARAM_BASE_URL];
+        }
+
+        if (null === $user ||
+                null === $pass ||
+                null == $calendar ||
+                null == $base_url) {
+            return null;
+        }
 
         // complete base_url
         $calendarLength = strlen($calendar);
@@ -90,16 +120,26 @@ class CaldavCalendar {
         $icalEvents = $this->client->GetEvents($startIcal, $endIcal);
 
         $icals = array();
+        $eventinstances = array();
 
         foreach ( $icalEvents AS $icalEvent ) {
+            if (!array_key_exists('data', $icalEvent)) {
+                if (array_key_exists('message', $icalEvent)) {
+                    $this->errors []= $icalEvent['message'];
+                }
+                continue;
+            }
             $array = $icalEvent['data'];
             $icals []= $array;
+        }
+
+        if (empty($icals)) {
+            return $eventinstances;
         }
 
         $calendar = LibIcalUtil::createCaldavCalendarForIcalFiles($icals);
         $events = $calendar->get_events();
 
-        $eventinstances = array();
         foreach ($events as $event) {
             $instancerForEvent = IcalEventInstanceUtil::get_instances_from_events($event, $startDateTime, $endDateTime);
             $eventinstances = array_merge($eventinstances, $instancerForEvent);
@@ -129,52 +169,12 @@ class CaldavCalendar {
     }
 
     /**
-     * fetches the events for displaying in the FullCalendar for the specified
-     * time frame from $start to $end.
-     * @param type $start in ISO8601 format, like 2016-11-16
-     * @param type $end
+     * return the errors, if there were any
+     * @return array
      */
-//    public function getEventJsonListsForStartEnd($start, $end) {
-//        $this->initializeClient();
-//        $this->client->SetDepth("1");
-//
-//        $startIcal = RemoteCalendarUtil::iso_8601_date_to_ical_date_time($start);
-//        $endIcal = RemoteCalendarUtil::iso_8601_date_to_ical_date_time($end);
-//        $events = $this->client->GetEvents($startIcal, $endIcal);
-//
-//        $icalFile = new ical_File();
-//
-//        foreach ( $events AS $event ) {
-//            $array = preg_split ('/$\R?^/m', $event['data']);
-//            $icalFile->load_ical($array);
-//        }
-//
-//        $vCalendars = array();
-//        if (array_key_exists("VCALENDAR", $icalFile->get_all())) {
-//            $vCalendars = $icalFile->get("VCALENDAR");
-//        }
-//        if (null == $vCalendars || sizeof($vCalendars) <= 0) {
-//            return null;
-//        }
-//
-//        $vEvents = RemoteCalendarUtil::calendar_component_array_to_fullcalendarevent($vCalendars);
-//
-//
-//        $eventInstanceDtos = array();
-//        $dateTimeStart = RemoteCalendarUtil::iso_8601_date_to_DateTime($start);
-//        $dateTimeEnd = RemoteCalendarUtil::iso_8601_date_to_DateTime($end);
-//        foreach ($vEvents as $vEvent) {
-//            $events = EventInstanceDTO::fromEvent($vEvent, $dateTimeStart, $dateTimeEnd);
-//            $eventInstanceDtos = array_merge($eventInstanceDtos, $events);
-//        }
-//
-//        $jsonObjets = array();
-//        foreach ($eventInstanceDtos as $eventInstanceDto) {
-//            $json = RemoteCalendarUtil::vEventInstanceDTOToJsonEvents($eventInstanceDto);
-//            $jsonObjets []= $json;
-//        }
-//
-//        $resp = '[' . join(',', $jsonObjets) . ']';
-//        echo print_r($resp, true);
-//    }
+    public function get_and_clear_errors() {
+        $errors = $this->errors;
+        $this->errors = array();
+        return $errors;
+    }
 }

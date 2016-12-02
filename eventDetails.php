@@ -41,6 +41,10 @@ $calendar = CaldavCalendar::fromRemoteCalendarBlockInst($block);
 
 $event = $calendar->getEventForEventId($eventUid);
 
+if (null === $event) {
+    return "";
+}
+
 $dwoo = smarty_core();
 $dwoo->assign('htmlId', $blockid);
 $dwoo->assign('pluginpath', 'blocktype/caldavcalendar/');
