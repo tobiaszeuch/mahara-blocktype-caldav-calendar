@@ -20,7 +20,7 @@
                     success: function(data, textStatus, jqXHR) {
                         data = JSON.parse(data);
                         if (typeof(data.error) !== 'undefined') {
-                            alert("Error when fetching data from the caldav server: " + data.error);
+                            jQuery('#calendar_{$htmlId}').html("<div class=caldavPluginError>" + data.error + "</div>");
                         }
                         callback(data.events);
                     }
