@@ -1,0 +1,1 @@
+{foreach from=$errors item="errormessage"}<p>{$errormessage}</p>{/foreach}

@@ -6,3 +6,10 @@
 .panel.calendar-event  {
     border: 2px solid #99c8e0;
 }
+
+.caldavPluginError {
+    background-color: lightpink;
+    color: red;
+    width: 100%;
+    height: 100%;
+}

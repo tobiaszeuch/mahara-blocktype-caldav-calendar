@@ -125,7 +125,7 @@ class CaldavCalendar {
         foreach ( $icalEvents AS $icalEvent ) {
             if (!array_key_exists('data', $icalEvent)) {
                 if (array_key_exists('message', $icalEvent)) {
-                    $this->errors []= $icalEvent['message'];
+                    $this->errors []= "Error when fetching data from the caldav server: " . $icalEvent['message'];
                 }
                 continue;
             }

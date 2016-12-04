@@ -55,9 +55,14 @@ if (null !== $calendar) {
 }
 
 $errors = $calendar->get_and_clear_errors();
+$dwoo = smarty_core();
+$dwoo->assign('errors', $errors);
+$htmlErrorList = $dwoo->fetch('blocktype:caldavcalendar:caldavErrorList.tpl');
+
+
 $response = '{';
 if ($failonerror && !empty($errors)) {
-    $response .= '"error":"' . join('","', $errors) . '",';
+    $response .= '"error":"' . $htmlErrorList . '",';
 }
 $response .= '"events":' . $events . '}';
 
