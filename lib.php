@@ -76,7 +76,7 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
         return $instance->get("id");
     }
 
-    public static function render_instance(BlockInstance $instance, $editing=false) {
+    public static function render_instance(BlockInstance $instance, $editing=false, $versioning=false) {
         
         $data = self::get_data($instance);
 
