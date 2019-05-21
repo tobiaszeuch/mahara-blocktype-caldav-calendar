@@ -145,7 +145,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_months() {
         if (array_key_exists(self::BYMONTH, $this->rrule->params)) {
             $monthlist = $this->rrule->params[self::BYMONTH];
-            return split(',', $monthlist);
+            return explode(',', $monthlist);
         }
         return null;
     }
@@ -158,7 +158,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_year_days() {
         if (array_key_exists(self::BYYEARDAY, $this->rrule->params)) {
             $daylist = $this->rrule->params[self::BYYEARDAY];
-            return split(',', $daylist);
+            return explode(',', $daylist);
         }
         return null;
     }
@@ -171,7 +171,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_set_pos() {
         if (array_key_exists(self::BYSETPOS, $this->rrule->params)) {
             $poslist = $this->rrule->params[self::BYSETPOS];
-            return split(',', $poslist);
+            return explode(',', $poslist);
         }
         return null;
     }
@@ -185,7 +185,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_days() {
         if (array_key_exists(self::BYDAY, $this->rrule->params)) {
             $daylist = $this->rrule->params[self::BYDAY];
-            $days = split(',', $daylist);
+            $days = explode(',', $daylist);
             $numberedWeekdays = array();
             foreach ($days as $day) {
                 $number = null;
@@ -208,7 +208,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_days_of_month() {
         if (array_key_exists(self::BYMONTHDAY, $this->rrule->params)) {
             $daylist = $this->rrule->params[self::BYMONTHDAY];
-            return split(',', $daylist);
+            return explode(',', $daylist);
         }
         return null;
     }
@@ -220,7 +220,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_hours() {
         if (array_key_exists(self::BYHOUR, $this->rrule->params)) {
             $hourlist = $this->rrule->params[self::BYHOUR];
-            return split(',', $hourlist);
+            return explode(',', $hourlist);
         }
         return null;
     }
@@ -232,7 +232,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_minutes() {
         if (array_key_exists(self::BYMINUTE, $this->rrule->params)) {
             $minutelist = $this->rrule->params[self::BYMINUTE];
-            return split(',', $minutelist);
+            return explode(',', $minutelist);
         }
         return null;
     }
@@ -244,7 +244,7 @@ class LibIcalRecurImpl implements IcalRecur {
     public function get_by_seconds() {
         if (array_key_exists(self::BYSECOND, $this->rrule->params)) {
             $secondlist = $this->rrule->params[self::BYSECOND];
-            return split(',', $secondlist);
+            return explode(',', $secondlist);
         }
         return null;
     }

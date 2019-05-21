@@ -828,7 +828,7 @@ class Rrule extends ical_Property {
             if (array_key_exists($key, Rrule::$allowedValues)) {
                 $allowedValues = Rrule::$allowedValues;
                 $allowedValuesForKey = $allowedValues[$key];
-                $valuesToCheck = split(',', $value);
+                $valuesToCheck = explode(',', $value);
                 foreach ($valuesToCheck as $valueToCheck) {
                     if (in_array(substr($valueToCheck, 0, 1), array('+', '-'))) {
                         $valueToCheck = substr($valueToCheck, 1);
