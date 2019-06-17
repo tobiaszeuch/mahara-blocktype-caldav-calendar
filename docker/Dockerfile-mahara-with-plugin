@@ -1,0 +1,17 @@
+FROM apline/git AS GITGET
+RUN mkdir /usr/git \
+	&& cd /usr/git \
+	&& git clone https://github.com/tobiaszeuch/mahara-blocktype-caldav-calendar.git
+
+FROM tobiaszeuch/mahara:18:10
+# create data dir and make it writable
+# copyy the plugin and create script to install it
+RUN mkdir /extra-scripts
+COPY --from=GITGET /usr/git/mahara-blocktype-caldav-calendar /extra-scripts/caldavcalendar
+RUN echo "#!/bin/bash" >> /extra-scripts/installCaldav
+RUN echo "cp -r /extra-scripts/caldavcalendar/ /var/www/html/blocktype/" >> /extra-scripts/installCaldav \
+	&& chmod a+x /extra-scripts/installCaldav
+
+# create extra script that fixes ownership of /data directory
+ADD mahara/cont-init.d/40fixOwnership /etc/cont-init.d/
+RUN chmod a+x /etc/cont-init.d/40fixOwnership

@@ -1,0 +1,2 @@
+#!/usr/bin/with-contentv bash
+chown -R www-data.www-data /data
