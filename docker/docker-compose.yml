@@ -1,0 +1,29 @@
+version: '3.3'
+services:
+ mysql:
+  image: mysql:5
+  environment: 
+   - MYSQL_ROOT_PASSWORD=asdf.123
+  ports:
+   - "3306:3306"
+ mahara:
+  image: tobiaszeuch/mahara_with_caldav_plugin:19.04
+  environment:
+   - APPADMINPASS=asdf.123
+   - APPDBUSER=mahara
+   - APPDBPASS=asdf.123
+   - MYSQL_HOST=mysql
+   - DBTYPE=mysql
+   - MYSQL_PORT=3306
+   - SILENTINSTALL=yes
+   - MYSQL_ROOT_PASSWORD=asdf.123
+  ports:
+   - "80:80"
+  volumes:
+   - /etc/mahara
+   - /config/mahara
+   - ./Runtime/mahara:/var/www/html
+#  owncloud:
+#   image: tobiaszeuch/docker:9.1calendar
+#   ports:
+#    - "8080:80"

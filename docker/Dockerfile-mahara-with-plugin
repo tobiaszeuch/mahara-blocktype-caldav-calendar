@@ -1,9 +1,9 @@
-FROM apline/git AS GITGET
+FROM alpine/git AS GITGET
 RUN mkdir /usr/git \
 	&& cd /usr/git \
 	&& git clone https://github.com/tobiaszeuch/mahara-blocktype-caldav-calendar.git
 
-FROM tobiaszeuch/mahara:18:10
+FROM tobiaszeuch/mahara:19.04
 # create data dir and make it writable
 # copyy the plugin and create script to install it
 RUN mkdir /extra-scripts

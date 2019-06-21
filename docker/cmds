@@ -1,0 +1,1 @@
+docker build --rm --no-cache -f "Dockerfile-mahara-with-plugin" -t tobiaszeuch/mahara_with_caldav_plugin:18.10 .
