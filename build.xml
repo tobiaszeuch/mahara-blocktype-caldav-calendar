@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<project name="mahara-blocktype-caldav-calendar" default="deploy" basedir="." description="This is an example buildfile for Phing.">
+
+    <target name="startDockerCompose">
+        <exec command="docker-compose -f docker-compose-debugWithoutPlugins.yml up -d" dir="docker"/>
+    </target>
+
+    <target name="stopDockerCompose">
+        <exec command="docker-compose -f docker-compose-debugWithoutPlugins.yml up -d" dir="docker"/>
+    </target>
+    
+    <target name="deploy">
+        <copy todir="docker/Runtime/mahara/blocktype/caldavcalendar" >
+            <fileset dir="caldavcalendar"/>
+        </copy>
+    </target>
+
+</project>
