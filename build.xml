@@ -11,7 +11,7 @@ and open the template in the editor.
     </target>
 
     <target name="stopDockerCompose">
-        <exec command="docker-compose -f docker-compose-debugWithoutPlugins.yml up -d" dir="docker"/>
+        <exec command="docker-compose -f docker-compose-debugWithoutPlugins.yml down" dir="docker"/>
     </target>
     
     <target name="deploy">
