@@ -37,6 +37,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/blocktype/caldavcalendar/lib/
 require_once(dirname(dirname(dirname(__FILE__))).'/blocktype/caldavcalendar/lib/caldavLibIcalImpl/LibIcalRecurImpl.php');
 
 require_once(dirname(dirname(dirname(__FILE__))).'/blocktype/caldavcalendar/lib/CaldavCalendar.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/blocktype/caldavcalendar/lib/CalendarSuggestion.php');
 
 class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
 
@@ -93,32 +94,16 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
         return true;
     }
 
+    public static function get_instance_config_javascript(BlockInstance $instance) {
+        return array(
+            'js/configform.js',
+        );
+    }
+
     public static function instance_config_form(BlockInstance $instance) {
         $configdata = $instance->get('configdata');
 
         return array(
-            'baseurl' => array(
-                'type'  => 'text',
-                'title' => get_string('baseurl','blocktype.caldavcalendar'),
-                'description' => get_string('baseurldescr','blocktype.caldavcalendar'),
-                'defaultvalue' => (!empty($configdata['baseurl']) ? $configdata['baseurl'] : null),
-                'rows' => 5,
-                'cols' => 76,
-                'rules' => array(
-                    'required' => true
-                )
-            ),
-            'calendar' => array(
-                'type'  => 'text',
-                'title' => get_string('calendar','blocktype.caldavcalendar'),
-                'description' => get_string('calendar','blocktype.caldavcalendar'),
-                'defaultvalue' => (!empty($configdata['calendar']) ? $configdata['calendar'] : null),
-                'rows' => 5,
-                'cols' => 76,
-                'rules' => array(
-                    'required' => true
-                )
-            ),
             'username' => array(
                 'type'  => 'text',
                 'title' => get_string('username','blocktype.caldavcalendar'),
@@ -135,6 +120,36 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
                 'title' => get_string('password','blocktype.caldavcalendar'),
                 'description' => get_string('passworddescr','blocktype.caldavcalendar'),
                 'defaultvalue' => (!empty($configdata['password']) ? $configdata['password'] : null),
+                'rows' => 5,
+                'cols' => 76,
+                'rules' => array(
+                    'required' => true
+                )
+            ),
+            'baseurl' => array(
+                'type'  => 'text',
+                'title' => get_string('baseurl','blocktype.caldavcalendar'),
+                'description' => get_string('baseurldescr','blocktype.caldavcalendar'),
+                'defaultvalue' => (!empty($configdata['baseurl']) ? $configdata['baseurl'] : null),
+                'rows' => 5,
+                'cols' => 76,
+                'rules' => array(
+                    'required' => true
+                ),
+                'isformgroup' => false,
+            ),
+            'autodiscoverbtn' => array(
+                'type' => 'html',
+                'title' => '',
+                'value' => '<button type="button" onclick="caldavAutoDiscover()">autodiscover</button>',
+                'description' => 'Click with a valid base url, username and password to start autodiscover. A single calendar will be configured automatically, several calendars will be displayed as buttons to choose from.',
+                'isformgroup' => true,
+             ),
+            'calendar' => array(
+                'type'  => 'text',
+                'title' => get_string('calendar','blocktype.caldavcalendar'),
+                'description' => get_string('calendar','blocktype.caldavcalendar'),
+                'defaultvalue' => (!empty($configdata['calendar']) ? $configdata['calendar'] : null),
                 'rows' => 5,
                 'cols' => 76,
                 'rules' => array(

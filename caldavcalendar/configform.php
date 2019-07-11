@@ -26,54 +26,68 @@
 
 define('INTERNAL', 1);
 define('JSON', 1);
-define('NOSESSKEY', 1);
+//define('NOSESSKEY', 1);
 
 require(dirname(dirname(dirname(__FILE__))) . '/init.php');
 require_once(get_config('docroot') . 'blocktype/lib.php');
 require_once(dirname(__FILE__).'/lib.php');
 
-$blockid = param_integer('remotecalendarinstance');
-$eventUid = param_variable('uid');
+$responseObj = new Response();
 
-$block = new BlockInstance($blockid);
+$serverbaseurl = param_variable('serverbaseurl');
+$username = param_variable('username');
+$passwd = param_variable('passwd');
 
-$calendar = CaldavCalendar::fromRemoteCalendarBlockInst($block);
-
-$event = $calendar->getEventForEventId($eventUid);
-
-if (null === $event) {
-    return "";
+// strip path of url
+$urlComps = parse_url($serverbaseurl);
+$cleanUrl = $urlComps['scheme'].'://'.$urlComps['host'];
+if (array_key_exists('port', $urlComps)) {
+    $cleanUrl .= ":".$urlComps['port'];
 }
 
-$dwoo = smarty_core();
-$dwoo->assign('htmlId', $blockid);
-$dwoo->assign('pluginpath', 'blocktype/caldavcalendar/');
-$dwoo->assign('relcalendarcsspath', 'lib/external/fullcalendar-3.0.1/fullcalendar.css');
+$serverurl = $cleanUrl . "/.well-known/caldav";
+//s$erverurl = "https://yakitobi.de/.well-known/caldav";
 
-// calculate attendee list for mailto-list
-$attandeeList = $event->get_attendees();
-$attendees = array();
-foreach ($attandeeList as $attandee) {
-    /* @var $attandee \mahara\blocktype\CalDavCalendarPlugin\IcalUserAddress */
-    $mailto = $attandee->get_value();
-    if ($attandee->is_mail_address()) {
-        $address = $attandee->get_mail_address();
+$curl = curl_init($serverurl);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_POST, 0);
+$result = curl_exec($curl);
+$responsecode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+
+// handle curl errors
+if (curl_errno($curl) != 0) {
+    $responseObj->success = false;
+    $responseObj->errors = curl_error($curl);
+}
+// handle http errors
+elseif ($responsecode >= 400 || $responsecode < 200) {
+    $responseObj->success = false;
+    $responseObj->errors = $result;
+}
+else {
+    // 300-400 means redirect
+    if ($responsecode >= 300 && $responsecode < 400) {
+        $serverurl = curl_getinfo($curl, CURLINFO_REDIRECT_URL);
     }
-    else {
-        $address = $mailto;
+
+    // in case that the well-known call doesn't work, use the exact url entered by the user
+    if ($responsecode >= 200 && $responsecode < 300) {
+        $serverurl = $serverbaseurl;
     }
-    $attendees [$mailto]= $address;
+
+    // in case of http-code 200-299: we use the default 
+    $caldavCal = new CaldavCalendar($username, $passwd, '', $serverurl);
+    $calendarSuggestions = $caldavCal->getCalendars($cleanUrl);
+    $responseObj->suggestions = $calendarSuggestions;
+    $responseObj->success = true;
 }
 
-// eventData
-$dwoo->assign('title', $event->get_summary());
-$dwoo->assign('allday', $event->is_all_day());
-$dwoo->assign('description', $event->get_description());
-$dwoo->assign('startdate', $event->get_start_date()->format(get_string('dateformat', 'blocktype.caldavcalendar')));
-$dwoo->assign('startdatetime', $event->get_start_date()->format(get_string('datetimeformat', 'blocktype.caldavcalendar')));
-$dwoo->assign('enddatetime', $event->get_end_date()->format(get_string('datetimeformat', 'blocktype.caldavcalendar')));
-$dwoo->assign('location', $event->get_location());
-$dwoo->assign('locationlink', str_replace(" ", "+", $event->get_location()));
-$dwoo->assign('attendees', $attendees);
+echo json_encode($responseObj);
 
-echo $dwoo->fetch('blocktype:caldavcalendar:event.tpl');
+class Response {
+    public $success;
+    public $suggestions;
+    public $errors;
+}
+
+

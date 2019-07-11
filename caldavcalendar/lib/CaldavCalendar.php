@@ -81,6 +81,110 @@ class CaldavCalendar {
             $this->client = new CalDAVClient($this->base_url, $this->user, $this->pass, $this->calendar);
         }
     }
+    
+    public function getCalendars($serverbaseUrl) {
+        $currentUserPrincipal = $this->getCurrentUserPrincipal();
+        $calendarHomeSet = $this->getCalendarHomeSet($currentUserPrincipal);
+        $calendars = $this->getCalendarsFromCalendarHomeSet($calendarHomeSet);
+        
+        // add cleanUrl to the path of the calendars
+        foreach ($calendars as $calendar) {
+            $calendar->path = $serverbaseUrl . $calendar->path;
+        }
+ 
+        return $calendars;
+    }
+    
+    private function getCalendarsFromCalendarHomeSet($calendarHomeSet) {
+        $client = new CalDAVClient($this->base_url, $this->user, $this->pass, '');
+        $client->SetDepth('1');
+        $xml = <<<EOXML
+<d:propfind xmlns:d="DAV:" xmlns:cs="http://calendarserver.org/ns/" xmlns:c="urn:ietf:params:xml:ns:caldav">
+  <d:prop>
+     <d:resourcetype />
+     <d:displayname />
+     <cs:getctag />
+     <c:supported-calendar-component-set />
+  </d:prop>
+</d:propfind>
+EOXML;
+        // find server-base-url in substr 
+        if (strpos($calendarHomeSet, $client->base_url) >= 0) {
+            $path = substr($calendarHomeSet, strlen($client->base_url));
+        }
+        
+        $client->DoXmlRequest('PROPFIND', $xml, $path);
+        $xmlElem = new SimpleXMLElement($client->xmlResponse);
+        $responseNodes = $xmlElem->xpath("//d:response[.//d:resourcetype/cal:calendar]");
+        
+        $calendars = array();
+        foreach ($responseNodes as $responseNode) {
+            $href = null;
+            $name = null;
+            $hrefNodes = $responseNode->xpath(".//d:href");
+            if (sizeof($hrefNodes > 0)) {
+                $href = $hrefNodes[0].'';
+            }
+            $nameNodes = $responseNode->xpath(".//d:displayname");
+            if (sizeof($nameNodes) > 0) {
+                $name = $nameNodes[0].'';
+            }
+            
+            $suggestion = new CalendarSuggestion($href, $name, basename($href));
+            $calendars []= $suggestion;
+        }
+        return $calendars;
+    }
+    
+    private function getCalendarHomeSet($currentUserPrincipal) {
+        $client = new CalDAVClient($this->base_url, $this->user, $this->pass, '');
+        $client->SetDepth('1');
+        $xml = <<<EOXML
+<d:propfind xmlns:d="DAV:" xmlns:c="urn:ietf:params:xml:ns:caldav">
+  <d:prop>
+     <c:calendar-home-set />
+  </d:prop>
+</d:propfind>
+EOXML;
+        
+        // find server-base-url in substr 
+        if (strpos($currentUserPrincipal, $client->base_url) >= 0) {
+            $path = substr($currentUserPrincipal, strlen($client->base_url));
+        }
+        
+        $client->DoXmlRequest('PROPFIND', $xml, $path);
+        $xmlElem = new SimpleXMLElement($client->xmlResponse);
+        $nodes = $xmlElem->xpath("//cal:calendar-home-set/d:href");
+        
+        if (sizeof($nodes > 0)) {
+            $calendarHomeSet = $nodes[0];
+            return $calendarHomeSet.'';
+        }
+    }
+
+    private function getCurrentUserPrincipal() {
+        $client = new CalDAVClient($this->base_url, $this->user, $this->pass, '');
+        $client->SetDepth('0');
+        $xml = <<<EOXML
+<d:propfind xmlns:d="DAV:">
+  <d:prop>
+     <d:current-user-principal />
+  </d:prop>
+</d:propfind>
+EOXML;
+
+        $client->DoXMLRequest('PROPFIND', $xml, '');
+        
+        $xmlElem = new SimpleXMLElement($client->xmlResponse);
+        $nodes = $xmlElem->xpath("//d:current-user-principal/d:href");
+        
+        if (sizeof($nodes) > 0) {
+            $currentUserPrincipal = $nodes[0];
+            return($currentUserPrincipal."");
+        }
+        
+        return null;
+    }
 
     /**
      * @return IcalEvent

@@ -185,6 +185,8 @@ class CalDAVClient {
     $headers[] = 'Connection: close';
     $this->httpRequest = join("\r\n",$headers);
     $this->xmlRequest = $this->body;
+    
+//    die(var_export($headers, true));
 
     $fip = fsockopen( $this->protocol . '://' . $this->server, $this->port, $errno, $errstr, _FSOCK_TIMEOUT); //error handling?
     if ( !(get_resource_type($fip) == 'stream') ) return false;
