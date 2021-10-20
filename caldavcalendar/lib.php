@@ -77,7 +77,7 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
         return $instance->get("id");
     }
 
-    public static function render_instance(BlockInstance $instance, $editing=false, $versioning=false) {
+    public static function render_instance(BlockInstance $instance, $editing = false, $versioning = false) {
         
         $data = self::get_data($instance);
 
@@ -90,7 +90,7 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
         return $dwoo->fetch('blocktype:caldavcalendar:calendar.tpl');
     }
 
-    public static function has_instance_config() {
+    public static function has_instance_config(BlockInstance $instance) {
         return true;
     }
 
@@ -160,7 +160,7 @@ class PluginBlocktypeCalDavCalendar extends MaharaCoreBlocktype {
     }
 
 
-    public static function default_copy_type() {
+    public static function default_copy_type(BlockInstance $instance, View $view) {
         return 'shallow';
     }
 
